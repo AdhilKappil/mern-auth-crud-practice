@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import morgan from "morgan";
 
 dotenv.config();
 connectDB();
@@ -18,9 +19,10 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.use(morgan("dev"));
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes); 
 
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
